@@ -1,0 +1,31 @@
+
+<h1 class="text-center font-weight-bold mt-3 mb-3">Check Out</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered ">
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+                {% for product in products %}
+                <tr>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}}</td>
+                    <td>
+                        <form action="/cart/removeProduct" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{product.id}}" name="id"/>
+                            <button type="submit" class="btn btn-sm p-0 text-danger">
+                                Remove from Cart
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            <h2>Total : {{total}} $</h2>
+        </div>
+    </div>
+</div>
